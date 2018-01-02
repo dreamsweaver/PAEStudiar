@@ -1305,6 +1305,7 @@ function onLoad(){
 document.addEventListener("deviceready",odr,false);
 }
 function odr(){
+	var phoneUUID=device.uuid;
 	alert("device ready");
 	alert(phoneUUID);
 }
