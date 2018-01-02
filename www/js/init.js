@@ -1306,7 +1306,7 @@ function getMac() {
     // device APIs are available
     //
     function onDeviceReady() {
-		console.log(device.uuid);
+		alert(device.uuid);
         /*var element = document.getElementById('deviceProperties');
         element.innerHTML = 'Device Model: '    + device.model    + '<br />' +
                             'Device Cordova: '  + device.cordova  + '<br />' +
