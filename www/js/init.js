@@ -20,7 +20,7 @@ $(document).ready(function(){
 			cache:false,
 			url: ajax_url,
 			data: {
-				mac : mac,
+				mac : deviceid,
 				user_id : user,
 				action : "verificar_dispositivo"
 			},
@@ -31,6 +31,9 @@ $(document).ready(function(){
 				data = $.parseJSON(data);
 				console.log(data);
 				loading_ajax({estado:false});
+				if( data.device !== undefined ){
+					localStorage.setItem('temp_deviceid',data.device);
+				}
 				if( data.estatus == 0 ){
 					//navigator.notification.alert(data.msj, function(){ window.location.href = 'free.html'; }, 'Registri exitoso','Aceptar');
 					alert( data.msj );
