@@ -1301,7 +1301,10 @@ function getMac() {
 	);
 }
 
-document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-	alert(device.uuid);
+function onLoad(){
+document.addEventListener("deviceready",odr,false);
+}
+function odr(){
+	alert("device ready");
+	alert(phoneUUID);
 }
