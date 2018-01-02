@@ -11,7 +11,8 @@ $(document).ready(function(){
 			verify_loggedout_cookie();			
 		},1000);
 		
-		var mac = window.MacAddress.getMacAddress();
+		/*
+		var mac = getMac();
 		var user = localStorage.getItem('wordpress_loggedin_admin');
 
 		$.ajax({
@@ -43,6 +44,7 @@ $(document).ready(function(){
 				//navigator.notification.vibrate(2);
 			}
 		});
+		*/
 	}
 	
 	if( $('body').hasClass('seleccionexamen') ){
@@ -1288,6 +1290,28 @@ String.prototype.ucfirst = function(){
     return this.charAt(0).toUpperCase() + this.substr(1);
 }
 
-window.MacAddress.getMacAddress(
-	function(macAddress) {return macAddress;},function(fail) {return fail;}
-);
+function getMac() {
+	console.log("Get MAC");
+	window.MacAddress.getMacAddress(
+		function(macAddress) {
+			alert(macAddress);
+		}, function(fail) {
+			alert(fail);
+		}
+	);
+}
+
+ document.addEventListener("deviceready", onDeviceReady, false);
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+		console.log(device.uuid);
+        /*var element = document.getElementById('deviceProperties');
+        element.innerHTML = 'Device Model: '    + device.model    + '<br />' +
+                            'Device Cordova: '  + device.cordova  + '<br />' +
+                            'Device Platform: ' + device.platform + '<br />' +
+                            'Device UUID: '     + device.uuid     + '<br />' +
+                            'Device Version: '  + device.version  + '<br />';
+		*/
+    }
