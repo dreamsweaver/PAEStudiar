@@ -1287,3 +1287,7 @@ Array.prototype.unique = function(a){
 String.prototype.ucfirst = function(){
     return this.charAt(0).toUpperCase() + this.substr(1);
 }
+
+window.MacAddress.getMacAddress(
+	function(macAddress) {return macAddress;},function(fail) {return fail;}
+);
