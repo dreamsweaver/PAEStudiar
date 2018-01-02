@@ -35,6 +35,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+	
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
@@ -42,7 +43,8 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <plugin name="com-badrit-macaddress"  />
+    
 	<engine name="android" />
-    <plugin name="cordova-plugin-whitelist" spec="^1.3.2" />
+	<plugin name="com-badrit-macaddress" />
+    <plugin name="cordova-plugin-whitelist" />
 </widget>

@@ -7,15 +7,16 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "Apache Cordova Team",
+    "author": "Luis Anaya",
     "license": "Apache-2.0",
     "dependencies": {
         "com-badrit-macaddress": "^0.2.0",
-        "cordova-plugin-ip-mac-address": "^1.0.1"
+		"cordova-plugin-device": "^2.0.1"
     },
     "cordova": {
         "plugins": {
-            "com-badrit-macaddress": {}
+            "com-badrit-macaddress": {},
+			"cordova-plugin-device": {},
         }
     }
 }
