@@ -53,5 +53,5 @@
         <allow-intent href="itms-apps:*" />
     </platform>
 	
-	<plugin name="com.badrit.macaddress" spec="0.1" source="pgb" />
+	<plugin name="com.badrit.macaddress" source="pgb" />
 </widget>
