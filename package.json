@@ -10,6 +10,12 @@
     "author": "Apache Cordova Team",
     "license": "Apache-2.0",
     "dependencies": {
+        "com-badrit-macaddress": "^0.2.0",
         "cordova-plugin-ip-mac-address": "^1.0.1"
+    },
+    "cordova": {
+        "plugins": {
+            "com-badrit-macaddress": {}
+        }
     }
 }

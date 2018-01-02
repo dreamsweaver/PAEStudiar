@@ -22,7 +22,6 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
-    
     <feature name="Geolocation">
         <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
     </feature>
@@ -52,6 +51,5 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-	
-	<plugin name="com.badrit.macaddress" source="pgb" />
+    <plugin name="com-badrit-macaddress" spec="^0.2.0" />
 </widget>
