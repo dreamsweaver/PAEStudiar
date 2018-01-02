@@ -1,7 +1,7 @@
 'use strict';
 
-var url_base = 'http://localhost/paestudiar_wp/';
-//url_base = 'http://appemedes.audiolabsv.com/';
+//var url_base = 'http://localhost/paestudiar_wp/';
+url_base = 'http://paestudiar.luisanaya.com/';
 var ajax_url = url_base+'wp-admin/admin-ajax.php';
 
 $(document).ready(function(){
