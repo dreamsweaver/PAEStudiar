@@ -11,9 +11,8 @@ $(document).ready(function(){
 			verify_loggedout_cookie();			
 		},1000);
 		
-		
 		var deviceid = localStorage.getItem('temp_deviceid');
-		var user = localStorage.getItem('wordpress_loggedin_admin');
+		var user = localStorage.getItem('app_user_id');
 
 		$.ajax({
 			type: "POST",
@@ -36,6 +35,15 @@ $(document).ready(function(){
 				}
 				if( data.estatus == 0 ){
 					//navigator.notification.alert(data.msj, function(){ window.location.href = 'free.html'; }, 'Registri exitoso','Aceptar');
+					localStorage.removeItem('wordpress_loggedin_admin');
+					localStorage.removeItem('app_user_id');
+					if (!localStorage.getItem('wordpress_loggedin_admin') && !localStorage.getItem('app_user_id')) {
+						window.location.href = 'index.html';
+					} else {
+						localStorage.setItem('wordpress_loggedin_admin', '', { expires: 0, path: '/' });
+						localStorage.setItem('app_user_id', 0, { expires: 0, path: '/' });
+						window.location.href = 'index.html';
+					}
 					alert( data.msj );
 				}
 			},
