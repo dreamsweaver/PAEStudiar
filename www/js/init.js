@@ -147,7 +147,7 @@ $(document).ready(function(){
 				timeout:10000,
 				error: function(){
 					loading_ajax({estado:false});
-					//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
+					navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
 					//navigator.notification.beep(2);
 					//navigator.notification.vibrate(2);
 				}
@@ -185,18 +185,18 @@ $(document).ready(function(){
 				console.log(data);
 				loading_ajax({estado:false});
 				if( data.estatus == 1 ){
-					//navigator.notification.alert(data.msj, function(){ window.location.href = 'free.html'; }, 'Registri exitoso','Aceptar');
-					alert( data.msj );
+					navigator.notification.alert(data.msj, function(){ window.location.href = 'free.html'; }, 'Registri exitoso','Aceptar');
+					//alert( data.msj );
 					window.location.href = 'free.html';
 				} else {
-					//navigator.notification.alert(data.msj, function(){}, 'Error en Registri','Aceptar');
-					alert( data.msj );
+					navigator.notification.alert(data.msj, function(){}, 'Error en Registri','Aceptar');
+					//alert( data.msj );
 				}
 			},
 			timeout:10000,
 			error: function(){
 				loading_ajax({estado:false});
-				//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
+				navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
 				//navigator.notification.beep(2);
 				//navigator.notification.vibrate(2);
 			}
@@ -225,17 +225,17 @@ $(document).ready(function(){
 				console.log(data);
 				loading_ajax({estado:false});
 				if( data.estatus == 1 ){
-					//navigator.notification.alert(data.msj, function(){ window.location.href = 'free.html'; }, 'Registri exitoso','Aceptar');
-					alert( data.msj );
+					navigator.notification.alert(data.msj, function(){ window.location.href = 'free.html'; }, 'Registri exitoso','Aceptar');
+					//alert( data.msj );
 				} else {
-					//navigator.notification.alert(data.msj, function(){}, 'Error en Registri','Aceptar');
-					alert( data.msj );
+					navigator.notification.alert(data.msj, function(){}, 'Error en Registri','Aceptar');
+					//alert( data.msj );
 				}
 			},
 			timeout:10000,
 			error: function(){
 				loading_ajax({estado:false});
-				//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
+				navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
 				//navigator.notification.beep(2);
 				//navigator.notification.vibrate(2);
 			}
@@ -279,17 +279,17 @@ $(document).ready(function(){
 				console.log(data);
 				loading_ajax({estado:false});
 				if( data.estatus == 1 ){
-					//navigator.notification.alert(data.msj, function(){ window.location.href = 'free.html'; }, 'Registri exitoso','Aceptar');
-					alert( data.msj );
+					navigator.notification.alert(data.msj, function(){ window.location.href = 'free.html'; }, 'Registri exitoso','Aceptar');
+					//alert( data.msj );
 				} else {
-					//navigator.notification.alert(data.msj, function(){}, 'Error en Registri','Aceptar');
-					alert( data.msj );
+					navigator.notification.alert(data.msj, function(){}, 'Error en Registri','Aceptar');
+					//alert( data.msj );
 				}
 			},
 			timeout:10000,
 			error: function(){
 				loading_ajax({estado:false});
-				//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
+				navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
 				//navigator.notification.beep(2);
 				//navigator.notification.vibrate(2);
 			}
@@ -852,7 +852,7 @@ $(document).ready(function(){
 			timeout:10000,
 			error: function(){
 				loading_ajax({estado:false});
-				//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
+				navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
 				//navigator.notification.beep(2);
 				//navigator.notification.vibrate(2);
 			}
@@ -897,7 +897,7 @@ $(document).ready(function(){
 			timeout:10000,
 			error: function(){
 				loading_ajax({estado:false});
-				//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
+				navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
 				//navigator.notification.beep(2);
 				//navigator.notification.vibrate(2);
 			}
@@ -1070,7 +1070,7 @@ $(document).ready(function(){
 			timeout:10000,
 			error: function(){
 				loading_ajax({estado:false});
-				//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
+				navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
 				//navigator.notification.beep(2);
 				//navigator.notification.vibrate(2);
 			}
@@ -1125,7 +1125,7 @@ $(document).ready(function(){
 			timeout:10000,
 			error: function(){
 				loading_ajax({estado:false});
-				//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
+				navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
 				//navigator.notification.beep(2);
 				//navigator.notification.vibrate(2);
 			}
