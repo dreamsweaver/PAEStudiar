@@ -11,8 +11,8 @@ $(document).ready(function(){
 			verify_loggedout_cookie();			
 		},1000);
 		
-		/*
-		var mac = getMac();
+		
+		var deviceid = localStorage.getItem('temp_deviceid');
 		var user = localStorage.getItem('wordpress_loggedin_admin');
 
 		$.ajax({
@@ -44,7 +44,7 @@ $(document).ready(function(){
 				//navigator.notification.vibrate(2);
 			}
 		});
-		*/
+		
 	}
 	
 	if( $('body').hasClass('seleccionexamen') ){
@@ -1288,54 +1288,4 @@ Array.prototype.unique = function(a){
 
 String.prototype.ucfirst = function(){
     return this.charAt(0).toUpperCase() + this.substr(1);
-}
-
-function getMac() {
-	console.log("Get MAC");
-	window.MacAddress.getMacAddress(
-		function(macAddress) {
-			alert(macAddress);
-		}, function(fail) {
-			alert(fail);
-		}
-	);
-}
-
-function onLoad(){
-document.addEventListener("deviceready",odr,false);
-}
-function odr(){
-	//var phoneUUID = device.uuid;
-	var mac = device.uuid;
-	var user = localStorage.getItem('wordpress_loggedin_admin');
-
-	$.ajax({
-		type: "POST",
-		cache:false,
-		url: ajax_url,
-		data: {
-			mac : mac,
-			user_id : user,
-			action : "verificar_dispositivo"
-		},
-		beforeSend: function(){
-			loading_ajax();
-		},
-		success: function (data) {
-			data = $.parseJSON(data);
-			console.log(data);
-			loading_ajax({estado:false});
-			if( data.estatus == 0 ){
-				//navigator.notification.alert(data.msj, function(){ window.location.href = 'free.html'; }, 'Registri exitoso','Aceptar');
-				alert( data.msj );
-			}
-		},
-		timeout:10000,
-		error: function(){
-			loading_ajax({estado:false});
-			//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
-			//navigator.notification.beep(2);
-			//navigator.notification.vibrate(2);
-		}
-	});
 }
