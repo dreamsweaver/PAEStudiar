@@ -300,8 +300,8 @@ $(document).ready(function(){
 		var genero = '';
 		var user_id = localStorage.getItem('app_user_id');
 		
-		if( $('#generof').is('checked') ){ genero = 'femenino'; }
-		if( $('#generom').is('checked') ){ genero = 'masculino'; }
+		if( $('#generof').is(':checked') ){ genero = 'femenino'; }
+		if( $('#generom').is(':checked') ){ genero = 'masculino'; }
 		
 		$.ajax({
 			type: "POST",
