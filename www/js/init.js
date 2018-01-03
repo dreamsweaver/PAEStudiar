@@ -8,7 +8,8 @@ $(document).ready(function(){
 	//console.log(localStorage.getItem('wordpress_loggedin_admin'));
 	if( $('body').hasClass('free') === false ){
 		setTimeout(function(){
-			verify_loggedout_cookie();			
+			verify_loggedout_cookie();	
+			check_user_exist();
 		},1000);
 		
 		var deviceid = localStorage.getItem('temp_deviceid');
@@ -791,8 +792,8 @@ $(document).ready(function(){
 			materias = null;
 		}
 		
-		console.log(materias);
-		console.log(year);
+		//console.log(materias);
+		//console.log(year);
 		
 		$.ajax({
 			type: "POST",
@@ -950,15 +951,30 @@ $(document).ready(function(){
 		});	
 	}
 	
+	$('body.practicar .estudio').each(function(){
+		var element = $(this);
+	});
+	
+	$('body.practicar').delegate('.radios-container .w-radio','tap',function(){
+		
+		var element = $(this);
+		
+		element.find('.radio-bullet-replacement').addClass('checked');
+		element.find('input').attr('checked','checked');
+		element.siblings().find('.radio-bullet-replacement').removeClass('checked');
+		element.siblings().find('input').removeAttr('checked');
+		element.find('.respuesta').removeClass('hidden');
+		
+	});
+	
 	$('body').delegate('.radios-container .w-radio','click',function(){
 		var element = $(this);
 		
-		if( !element.find('.radio-bullet-replacement').hasClass('checked') ){
-			element.find('.radio-bullet-replacement').addClass('checked');
-			element.find('input').attr('checked','checked');
-			element.siblings().find('.radio-bullet-replacement').removeClass('checked');
-			element.siblings().find('input').removeAttr('checked');
-		}
+		element.find('.radio-bullet-replacement').addClass('checked');
+		element.find('input').attr('checked','checked');
+		element.siblings().find('.radio-bullet-replacement').removeClass('checked');
+		element.siblings().find('input').removeAttr('checked');
+		
 	});
 	
 	//Evaluar paes
@@ -1258,6 +1274,30 @@ function check_role(role){
 			role : role,
 			user : user,
 			action : 'lockout_app'
+		},
+		url: ajax_url,
+		beforeSend: function(){
+			loading_ajax();
+		},
+		success: function (data) {
+			dat_ = jQuery.parseJSON(data);
+			loading_ajax({estado:false});
+			if( dat_.error == "1" ){
+				localStorage.removeItem('wordpress_loggedin_admin');
+				localStorage.removeItem('app_user_id');
+				window.location.href = 'index.html';
+			}
+		}
+	});
+}
+
+function check_user_exist(){
+	user = localStorage.getItem('app_user_id');
+	jQuery.ajax({
+		type: "POST",
+		data: {
+			user : user,
+			action : 'user_exists_ajax'
 		},
 		url: ajax_url,
 		beforeSend: function(){
