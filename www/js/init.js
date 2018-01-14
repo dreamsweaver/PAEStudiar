@@ -1114,7 +1114,7 @@ $(document).ready(function(){
 						 var url = 'results.html?correctas='+correctas+'&erroneas='+erroneas+'&materias='+materia.join('|');
 						 //console.log(url);
 						 window.location.href = url;
-						 return false;
+						//return false;
 					 }
 				});
 				
