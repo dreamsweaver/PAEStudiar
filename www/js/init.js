@@ -5,6 +5,7 @@ var url_base = 'http://paestudiar.luisanaya.com/';
 var ajax_url = url_base+'wp-admin/admin-ajax.php';
 
 $(document).ready(function(){
+	$("body").pullToRefresh();
 	//console.log(localStorage.getItem('wordpress_loggedin_admin'));
 	if( $('body').hasClass('free') === false ){
 		setTimeout(function(){
@@ -73,7 +74,7 @@ $(document).ready(function(){
 		
 		if( get_URL_parameter('cantidad') === undefined ){
 			$('#cantidadpormateria').hide();
-			$('#cantidadpormateria').prev().hide();
+			$('#cantidadpormateria').parent().prev().hide();
 		}
 		
 		var estudiarbtn = $('#estudiarbtn');
@@ -895,6 +896,7 @@ $(document).ready(function(){
 						autoHover : true
 					});
 				}
+				loading_ajax({estado:false});
 			},
 			timeout:10000,
 			error: function(){
@@ -1183,6 +1185,8 @@ $(document).ready(function(){
 					  '</li>';
 					$('#examinarmaterias').html(materias);
 				}
+				
+				loading_ajax({estado:false});
 			},
 			timeout:10000,
 			error: function(){
@@ -1267,7 +1271,7 @@ function get_URL_parameter(sParam){
 }
 
 function check_role(role){
-	user = localStorage.getItem('app_user_id');
+	var user = localStorage.getItem('app_user_id');
 	jQuery.ajax({
 		type: "POST",
 		data: {
