@@ -25,6 +25,8 @@
 	<preference name="KeepRunning" value="false"/>
 	<preference name="SplashScreen" value="screen.png"/>
 	<preference name="SplashScreenDelay" value="2000"/>
+	<preference name="HideKeyboardFormAccessoryBar" value="true" />
+    <preference name="KeyboardShrinksView" value="false" />
 
     
     <icon src="icon.png" />
@@ -49,6 +51,5 @@
     </platform>
     
 	<engine name="android" />
-	<plugin name="com-badrit-macaddress" />
     <plugin name="cordova-plugin-whitelist" />
 </widget>
