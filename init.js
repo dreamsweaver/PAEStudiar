@@ -417,17 +417,24 @@ $(document).ready(function(){
 		var color = Chart.helpers.color;
 		var materia = get_URL_parameter('materias');
 		
+		//alert('Materias: '+materia);
+		//alert('Correctas: '+get_URL_parameter('correctas'));
+		//alert('Incorrectas: '+get_URL_parameter('erroneas'));
+		
 		if( get_URL_parameter('correctas') !== undefined && get_URL_parameter('erroneas') !== undefined ){
 			
 			var f = new Date();
 			var fecha = f.getDate()+"-"+(f.getMonth()+1)+"-"+f.getFullYear();
 			
 			var registro = {'correctas' : get_URL_parameter('correctas'), 'erroneas' : get_URL_parameter('erroneas'), 'fecha' : fecha};
-			
+			var evaluaciones;
 			try {
-				var evaluaciones = $.parseJSON(localStorage.getItem('evalucaiones'));
+				evaluaciones = $.parseJSON(localStorage.getItem('evalucaiones'));
+				if( evaluaciones == null ){
+					evaluaciones = [];
+				}
 			} catch(err) {
-				var evaluaciones = [];
+				evaluaciones = [];
 			}
 			
 			evaluaciones.push(registro);
@@ -981,6 +988,38 @@ $(document).ready(function(){
 	
 	//Evaluar paes
 	if( $('body').hasClass('doquiz') ){
+		$('body').delegate('.wizard-finish','click',function(){
+			var correctas = 0;
+			var erroneas = 0;
+			var materiass = materias.split('|');
+			var materia = [];
+			 
+			 //console.log(materiass);
+			 
+			$('.wizard .radio-bullet-replacement').each(function(){
+				 var check = $(this);
+				 
+				 if( check.hasClass('checked') && check.siblings('input').hasClass('done') ){
+					 correctas++;
+				 }
+				 if( check.hasClass('checked') && check.siblings('input').hasClass('error') ){
+					 erroneas++;
+				 }
+			});
+			 
+			for( var i = 0; i < materiass.length; i++ ){
+				 //console.log(materiass[i]);
+				 var cantidad = $('.radio-bullet-replacement.checked[data-materia="'+materiass[i]+'"]').siblings('input.done').length;
+				 var cantidad2 = $('.radio-bullet-replacement.checked[data-materia="'+materiass[i]+'"]').siblings('input.error').length;
+				 materia.push(materiass[i]+','+cantidad+','+cantidad2);
+			}
+			 
+			var url = 'results.html?correctas='+correctas+'&erroneas='+erroneas+'&materias='+materia.join('|');
+			alert("Metodo delegado: "+url);
+			window.location.href = url;
+			return false;
+		});
+		
 		var year = '';
 		var materias = '';
 		var cantidad = '';
@@ -1112,7 +1151,7 @@ $(document).ready(function(){
 						 }
 						 
 						 var url = 'results.html?correctas='+correctas+'&erroneas='+erroneas+'&materias='+materia.join('|');
-						 //console.log(url);
+						 alert("metodo interno: "+url);
 						 window.location.href = url;
 						//return false;
 					 }
