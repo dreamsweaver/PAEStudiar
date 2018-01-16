@@ -417,9 +417,9 @@ $(document).ready(function(){
 		var color = Chart.helpers.color;
 		var materia = get_URL_parameter('materias');
 		
-		alert('Materias: '+materia);
-		alert('Correctas: '+get_URL_parameter('correctas'));
-		alert('Incorrectas: '+get_URL_parameter('erroneas'));
+		//alert('Materias: '+materia);
+		//alert('Correctas: '+get_URL_parameter('correctas'));
+		//alert('Incorrectas: '+get_URL_parameter('erroneas'));
 		
 		if( get_URL_parameter('correctas') !== undefined && get_URL_parameter('erroneas') !== undefined ){
 			
@@ -427,11 +427,14 @@ $(document).ready(function(){
 			var fecha = f.getDate()+"-"+(f.getMonth()+1)+"-"+f.getFullYear();
 			
 			var registro = {'correctas' : get_URL_parameter('correctas'), 'erroneas' : get_URL_parameter('erroneas'), 'fecha' : fecha};
-			
+			var evaluaciones;
 			try {
-				var evaluaciones = $.parseJSON(localStorage.getItem('evalucaiones'));
+				evaluaciones = $.parseJSON(localStorage.getItem('evalucaiones'));
+				if( evaluaciones == null ){
+					evaluaciones = [];
+				}
 			} catch(err) {
-				var evaluaciones = [];
+				evaluaciones = [];
 			}
 			
 			evaluaciones.push(registro);
