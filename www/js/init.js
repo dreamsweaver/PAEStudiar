@@ -415,7 +415,11 @@ $(document).ready(function(){
 	if( jQuery('#canvas_resultados').length ){
 		//Globales
 		var color = Chart.helpers.color;
-		var materia = get_URL_parameter('materias');
+		var materia = get_URL_parameter('materias');.
+		
+		alert('Materias: '+materia);
+		alert('Correctas: '+get_URL_parameter('correctas'));
+		alert('Incorrectas: '+get_URL_parameter('erroneas'));
 		
 		if( get_URL_parameter('correctas') !== undefined && get_URL_parameter('erroneas') !== undefined ){
 			
