@@ -1015,7 +1015,7 @@ $(document).ready(function(){
 			}
 			 
 			var url = 'results.html?correctas='+correctas+'&erroneas='+erroneas+'&materias='+materia.join('|');
-			alert("Metodo delegado: "+url);
+			//alert("Metodo delegado: "+url);
 			window.location.href = url;
 			return false;
 		});
