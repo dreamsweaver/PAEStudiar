@@ -6,7 +6,7 @@ var ajax_url = url_base+'wp-admin/admin-ajax.php';
 
 document.addEventListener("deviceready",onDeviceReady,false);
 function onDeviceReady(){
-	checkConnection();
+	//checkConnection();
 }
 
 $(document).ready(function(){
