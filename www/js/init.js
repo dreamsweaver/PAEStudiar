@@ -6,6 +6,7 @@ var ajax_url = url_base+'wp-admin/admin-ajax.php';
 
 $(document).ready(function(){
 	$("body").pullToRefresh();
+	checkConnection();
 	//console.log(localStorage.getItem('wordpress_loggedin_admin'));
 	if( $('body').hasClass('free') === false ){
 		setTimeout(function(){
@@ -1335,7 +1336,7 @@ function check_role(role){
 }
 
 function check_user_exist(){
-	user = localStorage.getItem('app_user_id');
+	var user = localStorage.getItem('app_user_id');
 	jQuery.ajax({
 		type: "POST",
 		data: {
@@ -1347,7 +1348,7 @@ function check_user_exist(){
 			loading_ajax();
 		},
 		success: function (data) {
-			dat_ = jQuery.parseJSON(data);
+			var dat_ = jQuery.parseJSON(data);
 			loading_ajax({estado:false});
 			if( dat_.error == "1" ){
 				localStorage.removeItem('wordpress_loggedin_admin');
@@ -1372,6 +1373,11 @@ function checkConnection() {
 	
 	if( states[networkState] === states[Connection.UNKNOWN] || states[networkState] === states[Connection.NONE] ){
 		navigator.notification.alert('No hay Conexión a internet o es muy lenta', function(){}, 'Error','Aceptar');
+		//navigator.notification.vibrate(1000);
+	}
+	
+	if( states[networkState] === states[Connection.CELL_2G] ){
+		navigator.notification.alert('La conexión a internet es muy lentam esto puede generar problemas al cargar los datos', function(){}, 'Error','Aceptar');
 		//navigator.notification.vibrate(1000);
 	}
 }
