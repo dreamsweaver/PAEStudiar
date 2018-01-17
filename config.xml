@@ -23,6 +23,10 @@
     <preference name="android-installLocation" value="auto" />
 	<preference name="DisallowOverscroll" value="false"/> 
 	<preference name="android-windowSoftInputMode" value="stateVisible|adjustResize"/>
+	
+	<feature name="NetworkStatus">
+		<param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+	</feature>
     
     <icon src="icon.png" />
     <splash src="screen.png" />
