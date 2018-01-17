@@ -4,9 +4,13 @@
 var url_base = 'http://paestudiar.luisanaya.com/';
 var ajax_url = url_base+'wp-admin/admin-ajax.php';
 
+document.addEventListener("deviceready",onDeviceReady,false);
+function onDeviceReady(){
+	checkConnection();
+}
+
 $(document).ready(function(){
 	$("body").pullToRefresh();
-	checkConnection();
 	//console.log(localStorage.getItem('wordpress_loggedin_admin'));
 	if( $('body').hasClass('free') === false ){
 		setTimeout(function(){
