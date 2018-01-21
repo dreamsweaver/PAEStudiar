@@ -1,7 +1,7 @@
 'use strict';
 
 //var url_base = 'http://localhost/paestudiar_wp/';
-var url_base = 'http://paestudiar.luisanaya.com/';
+var url_base = 'http://app.paestudiar.siesa.net/';
 var ajax_url = url_base+'wp-admin/admin-ajax.php';
 
 document.addEventListener("deviceready",onDeviceReady,false);
@@ -978,6 +978,7 @@ $(document).ready(function(){
 		element.siblings().find('.radio-bullet-replacement').removeClass('checked');
 		element.siblings().find('input').removeAttr('checked');
 		element.find('.respuesta').removeClass('hidden');
+		element.siblings().find('.respuesta').addClass('checked');
 		
 	});
 	
@@ -988,6 +989,7 @@ $(document).ready(function(){
 		element.find('input').attr('checked','checked');
 		element.siblings().find('.radio-bullet-replacement').removeClass('checked');
 		element.siblings().find('input').removeAttr('checked');
+		element.siblings().find('.respuesta').addClass('checked');
 		
 	});
 	
@@ -1047,8 +1049,8 @@ $(document).ready(function(){
 			cantidad = 25;
 		}
 		
-		console.log(materias);
-		console.log(year);
+		//console.log(materias);
+		//console.log(year);
 		
 		$.ajax({
 			type: "POST",
