@@ -140,5 +140,3 @@ a.toggle:hover {background: rgba(0, 0, 0, 0.9);}
 }
 .animated.animatedModal-on.zoomIn {background-color: #87E1E8!important;}
 .ajaxcontent {position: absolute; top: 40%;}
-#zoommanager {background: #fff; overflow: hidden;}
-#zoommanager li {float: left; width: auto; margin: 0; padding: 0;}
