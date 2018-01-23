@@ -116,6 +116,7 @@ li{
 .sk-three-bounce .sk-bounce1 {-webkit-animation-delay: -0.32s; animation-delay: -0.32s;}
 .sk-three-bounce .sk-bounce2 {-webkit-animation-delay: -0.16s; animation-delay: -0.16s;}
 
+
 @-webkit-keyframes sk-three-bounce {
   0%, 80%, 100% {-webkit-transform: scale(0); transform: scale(0);}
   40% {-webkit-transform: scale(1);transform: scale(1); }
@@ -139,3 +140,5 @@ a.toggle:hover {background: rgba(0, 0, 0, 0.9);}
 }
 .animated.animatedModal-on.zoomIn {background-color: #87E1E8!important;}
 .ajaxcontent {position: absolute; top: 40%;}
+#zoommanager {background: #fff; overflow: hidden;}
+#zoommanager li {float: left; width: auto; margin: 0; padding: 0;}

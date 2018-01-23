@@ -37,6 +37,7 @@ $(document).ready(function(){
 				data = $.parseJSON(data);
 				console.log(data);
 				loading_ajax({estado:false});
+				console.log(data.device);
 				if( data.device !== undefined ){
 					localStorage.setItem('temp_deviceid',data.device);
 				}
@@ -1250,7 +1251,23 @@ $(document).ready(function(){
 		element.parent().siblings().find('.respuesta').addClass('hidden');
 		element.parent().find('.respuesta').removeClass('hidden');
 	});
+	
+	
+	$('#zoom-in').click(function() {
+	   updateZoom(0.1);
+	});
+
+	$('#zoom-out').click(function() {
+	   updateZoom(-0.1);
+	});
+
 });
+
+var zoomLevel = 1;
+function updateZoom(zoom) {
+	zoomLevel += zoom;
+	$('body').css({ zoom: zoomLevel, '-moz-transform': 'scale(' + zoomLevel + ')' });
+}
 
 function loading_ajax(options){
 	var defaults = {
