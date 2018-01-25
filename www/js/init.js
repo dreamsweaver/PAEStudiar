@@ -10,7 +10,7 @@ function onDeviceReady(){
 }
 
 $(document).ready(function(){
-	$("body").pullToRefresh();
+	//$("body").pullToRefresh();
 	//console.log(localStorage.getItem('wordpress_loggedin_admin'));
 	if( $('body').hasClass('free') === false ){
 		setTimeout(function(){
@@ -37,8 +37,9 @@ $(document).ready(function(){
 				data = $.parseJSON(data);
 				console.log(data);
 				loading_ajax({estado:false});
-				console.log(data.device);
-				if( data.device !== undefined ){
+				
+				if( data.device !== undefined && deviceid != data.device ){
+					localStorage.removeItem('temp_deviceid');
 					localStorage.setItem('temp_deviceid',data.device);
 				}
 				if( data.estatus == 0 ){
@@ -367,10 +368,12 @@ $(document).ready(function(){
 		localStorage.removeItem('app_user_id');
 		if (!localStorage.getItem('wordpress_loggedin_admin') && !localStorage.getItem('app_user_id')) {
 			window.location.href = 'index.html';
+			localStorage.removeItem('temp_deviceid');
 		} else {
 			localStorage.setItem('wordpress_loggedin_admin', '', { expires: 0, path: '/' });
 			localStorage.setItem('app_user_id', 0, { expires: 0, path: '/' });
 			window.location.href = 'index.html';
+			localStorage.removeItem('temp_deviceid');
 		}
 	});
 	

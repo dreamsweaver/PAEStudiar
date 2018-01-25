@@ -239,6 +239,7 @@ a {
   border-bottom: 2px solid #fafafa;
   font-size: 13px;
   text-decoration: none;
+  width: 100%;
 }
 .nav-menu-link:active {
   color: #0180FF;
