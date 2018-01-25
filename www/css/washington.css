@@ -234,10 +234,9 @@ a {
 }
 .nav-menu-link {
   display: block;
-  height: 50px;
   padding: 0px;
   border-bottom: 2px solid #fafafa;
-  font-size: 13px;
+  font-size: 13px!important;
   text-decoration: none;
   width: 100%;
 }
