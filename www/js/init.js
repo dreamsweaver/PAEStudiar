@@ -70,7 +70,7 @@ $(document).ready(function(){
 		var element = $(this);
 		var url = element.attr("href");
 		
-		if( url.indexOf("years=") == -1 ){
+		if( url.indexOf("year") == -1 ){
 			alert("Debes seleccionar un año");
 			return false;
 		}
