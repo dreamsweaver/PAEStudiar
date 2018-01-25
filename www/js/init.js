@@ -66,6 +66,16 @@ $(document).ready(function(){
 		
 	}
 	
+	$('#estudiarbtn').click(function(){
+		var element = $(this);
+		var url = element.attr("href");
+		
+		if( url.indexOf("years=") == -1 ){
+			alert("Debes seleccionar un año");
+			return false;
+		}
+	});
+	
 	if( $('body').hasClass('seleccionexamen') ){
 		//console.log(get_URL_parameter('materias'));
 		if( get_URL_parameter('year') === undefined ){
