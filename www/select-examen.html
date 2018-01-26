@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Mis datos</title>
+  <title>PAES</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, user-scalable=yes">
   <meta http-equiv="cache-control" content="max-age=0" />
   <meta http-equiv="cache-control" content="no-cache" />
@@ -26,7 +26,7 @@
   <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="cordova.js"></script>
 </head>
-<body class="settings">
+<body>
 	<ul id="zoommanager">
 		<li><button class="button" id="zoom-in">+ Zoom</button></li>
 		<li><button class="button" id="zoom-out">- Zoom</button></li>
@@ -82,7 +82,7 @@
             <div class="separator-bottom"></div>
           </nav>
           <div class="wrapper-mask" data-ix="menu-mask"></div>
-          <div class="navbar-title">Mis datos</div>
+          <div class="navbar-title">PAES</div>
           <div class="w-nav-button navbar-button left" id="menu-button" data-ix="hide-navbar-icons">
             <div class="navbar-button-icon home-icon">
               <div class="bar-home-icon"></div>
@@ -92,60 +92,54 @@
           </div>
         </div>
       </div>
-      <div class="body padding">
-        <div class="logo-login smaller"></div>
-        <div class="w-form">
-          <form id="perfil_settings" method="post" name="email-form" data-name="Email Form" action="#">
-            <div>
-              <label class="label-form" for="full-name-field">Nombre completo</label>
-              <input class="w-input input-form" id="full-name-field" type="text" name="full-name" data-name="full-name" required="required">
-              <div class="separator-fields"></div>
-            </div>
-            <div>
-              <label class="label-form" for="email-field">Email</label>
-              <input class="w-input input-form" id="email-field" type="email" name="email" data-name="email" required="required">
-              <div class="separator-fields"></div>
-            </div>
-            <div>
-              <label class="label-form" for="birthday-field">Cumpleaños</label>
-              <input class="w-input input-form dateformat" id="birthday-field" type="text" name="birthday" data-name="birthday" required="required">
-              <div class="separator-fields"></div>
-            </div>
-            <div>
-              <label class="label-form" for="phone-field">Número telefónico</label>
-              <input class="w-input input-form dateformat phoneformat" id="phone-field" type="text" name="phone" data-name="phone" required="required">
-              <div class="separator-fields"></div>
-            </div>
-            <div>
-              <label class="label-form" for="escuela-field">Centro Escolar</label>
-              <input class="w-input input-form" id="escuela-field" type="text" name="escuela" data-name="escuela" required="required">
-              <div class="separator-fields"></div>
-            </div>
-            <div>
-              <div class="w-clearfix input-form one-line">
-                <label class="label-form middle" for="email">Género</label>
-                <div class="w-clearfix radios-container">
-                  <div class="w-radio w-clearfix radio-button">
-                    <div class="radio-bullet-replacement"></div>
-                    <input class="w-radio-input radio-bullet" id="generof" type="radio" name="Radio1" value="1" data-name="Radio1">
-                    <label class="w-form-label" for="node">Femenino</label>
-                  </div>
-                  <div class="w-radio w-clearfix radio-button">
-                    <div class="radio-bullet-replacement"></div>
-                    <input class="w-radio-input radio-bullet" id="generom" type="radio" name="Radio1" value="0" data-name="Radio1">
-                    <label class="w-form-label" for="node-2">Masculino</label>
-                  </div>
-                </div>
-              </div>
-              <div class="separator-fields"></div>
-            </div>
-            <input class="w-button action-button" type="submit" value="Guardar mis datos" data-wait="Por favor espere...">
-          </form>
-          <div class="w-form-done">
-            <p>Thank you! Your submission has been received!</p>
+      <div class="body">
+        <div class="w-tabs" data-duration-in="400" data-duration-out="400" data-easing="ease-out-quint">
+          <div class="w-tab-menu top-buttons">
+            <a class="w-tab-link w-inline-block toolbar-top-button" href="groups.html">
+              <div>ESTUDIAR</div>
+            </a>
+            <a class="w-tab-link w-inline-block toolbar-top-button w--current" data-w-tab="Tab 2">
+              <div>EXAMINAR</div>
+            </a>
           </div>
-          <div class="w-form-fail">
-            <p>Oops! Something went wrong while submitting the form</p>
+          <div class="w-tab-content tabs-content">
+            <div class="w-tab-pane w--tab-active w-clearfix tab-pane" data-w-tab="Tab 2">
+				<div class="grey-header">
+					<h3 class="grey-heading-title">Escoge la modalidad de examen</h3>
+				</div>
+              <div class="group-block">
+                <a class="w-inline-block" href="examinar.html?year=1&quiz=1" data-load="1">
+                  <div class="group-image bg4"></div>
+                  <div class="group-title">
+                    <div class="title-text">Por año</div>
+                  </div>
+                </a>
+              </div>
+			  <div class="group-block last">
+                <a class="w-inline-block" href="#" data-load="1">
+                  <div class="group-image bg1" style="background-image: url(images/btn-ayuda.png);"></div>
+                  <div class="group-title" style="background-color:#ffad00;">
+                    
+                  </div>
+                </a>
+              </div>
+              <div class="group-block">
+                <a class="w-inline-block" href="examinar.html?year=1&materias=1&quiz=1" data-load="1">
+                  <div class="group-image bg1"></div>
+                  <div class="group-title">
+                    <div class="title-text">Materia y año</div>
+                  </div>
+                </a>
+              </div>
+              <div class="group-block last">
+                <a class="w-inline-block" href="examinar.html?year=1&materias=1&cantidad=1&quiz=1" data-load="1">
+                  <div class="group-image bg2"></div>
+                  <div class="group-title">
+                    <div class="title-text">Autodiseñada</div>
+                  </div>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -155,17 +149,16 @@
         <div class="navbar-button-icon icon ion-load-d"></div>
       </div>
     </div>
-    
   </section>
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/framework.js"></script>
-  <!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->
   <script src="assets/animatemodal/animatedModal.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/jquery.mask.min.js"></script>
   <script type="text/javascript" src="js/jquery-wizard.min.js"></script>
-  <script type="text/javascript" src="js/Chart.bundle.js"></script>.
+  <script type="text/javascript" src="js/Chart.bundle.js"></script>
   <script type="text/javascript" src="js/jquery.p2r.min.js"></script>
   <script type="text/javascript" src="js/init.js"></script>
+  <!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->
 </body>
 </html>
