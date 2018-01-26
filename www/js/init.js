@@ -493,7 +493,7 @@ $(document).ready(function(){
 			var parts = item.split(',');
 			
 			var barChartDatam = {
-			labels: ["Matematicas"],
+			labels: ["Matemáticas"],
 			datasets: [{
 				label: 'Correctas',
 				backgroundColor: color(window.chartColors.blue).alpha(0.7).rgbString(),
@@ -501,7 +501,7 @@ $(document).ready(function(){
 				borderWidth: 1,
 				data: [parts[1],0]
 			}, {
-				label: 'Erroneas',
+				label: 'Erróneas',
 				backgroundColor: color(window.chartColors.yellow).alpha(0.7).rgbString(),
 				borderColor: window.chartColors.yellow,
 				borderWidth: 1,
@@ -532,7 +532,7 @@ $(document).ready(function(){
 				borderWidth: 1,
 				data: [parts[1],0]
 			}, {
-				label: 'Erroneas',
+				label: 'Erróneas',
 				backgroundColor: color(window.chartColors.yellow).alpha(0.7).rgbString(),
 				borderColor: window.chartColors.yellow,
 				borderWidth: 1,
@@ -563,7 +563,7 @@ $(document).ready(function(){
 				borderWidth: 1,
 				data: [parts[1],0]
 			}, {
-				label: 'Erroneas',
+				label: 'Erróneas',
 				backgroundColor: color(window.chartColors.yellow).alpha(0.7).rgbString(),
 				borderColor: window.chartColors.yellow,
 				borderWidth: 1,
@@ -594,7 +594,7 @@ $(document).ready(function(){
 				borderWidth: 1,
 				data: [parts[1],0]
 			}, {
-				label: 'Erroneas',
+				label: 'Erróneas',
 				backgroundColor: color(window.chartColors.yellow).alpha(0.7).rgbString(),
 				borderColor: window.chartColors.yellow,
 				borderWidth: 1,
@@ -686,7 +686,7 @@ $(document).ready(function(){
 						},
 						title: {
 							display: true,
-							text: 'Resultado Matematicas'
+							text: 'Resultado Matemáticas'
 						}
 					}
 				});
