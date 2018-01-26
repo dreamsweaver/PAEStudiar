@@ -18,53 +18,6 @@ $(document).ready(function(){
 			check_user_exist();
 		},1000);
 		
-		var deviceid = localStorage.getItem('temp_deviceid');
-		var user = localStorage.getItem('app_user_id');
-
-		$.ajax({
-			type: "POST",
-			cache:false,
-			url: ajax_url,
-			data: {
-				mac : deviceid,
-				user_id : user,
-				action : "verificar_dispositivo"
-			},
-			beforeSend: function(){
-				loading_ajax();
-			},
-			success: function (data) {
-				data = $.parseJSON(data);
-				console.log(data);
-				loading_ajax({estado:false});
-				
-				if( data.device !== undefined && deviceid != data.device ){
-					localStorage.removeItem('temp_deviceid');
-					localStorage.setItem('temp_deviceid',data.device);
-				}
-				if( data.estatus == 0 ){
-					//navigator.notification.alert(data.msj, function(){ window.location.href = 'free.html'; }, 'Registri exitoso','Aceptar');
-					localStorage.removeItem('wordpress_loggedin_admin');
-					localStorage.removeItem('app_user_id');
-					if (!localStorage.getItem('wordpress_loggedin_admin') && !localStorage.getItem('app_user_id')) {
-						window.location.href = 'index.html';
-					} else {
-						localStorage.setItem('wordpress_loggedin_admin', '', { expires: 0, path: '/' });
-						localStorage.setItem('app_user_id', 0, { expires: 0, path: '/' });
-						window.location.href = 'index.html';
-					}
-					alert( data.msj );
-				}
-			},
-			timeout:10000,
-			error: function(){
-				loading_ajax({estado:false});
-				//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
-				//navigator.notification.beep(2);
-				//navigator.notification.vibrate(2);
-			}
-		});
-		
 	}
 	
 	$('#estudiarbtn').click(function(){
@@ -199,8 +152,58 @@ $(document).ready(function(){
 				success: function (data) {
 					loading_ajax({estado:false});
 					if( data.status == "ok" ){
+						
 						localStorage.setItem('wordpress_loggedin_admin', data.cookie);
 						localStorage.setItem('app_user_id', data.user.id);
+						
+						var deviceid = localStorage.getItem('temp_deviceid');
+						var user = data.user.id
+
+						$.ajax({
+							type: "POST",
+							cache:false,
+							url: ajax_url,
+							data: {
+								mac : deviceid,
+								user_id : user,
+								action : "verificar_dispositivo"
+							},
+							beforeSend: function(){
+								loading_ajax();
+							},
+							success: function (data) {
+								data = $.parseJSON(data);
+								console.log(data);
+								loading_ajax({estado:false});
+								
+								if( data.device !== undefined && deviceid != data.device ){
+									localStorage.removeItem('temp_deviceid');
+									localStorage.setItem('temp_deviceid',data.device);
+								}
+								if( data.estatus == 0 ){
+									//navigator.notification.alert(data.msj, function(){ window.location.href = 'free.html'; }, 'Registri exitoso','Aceptar');
+									localStorage.removeItem('wordpress_loggedin_admin');
+									localStorage.removeItem('app_user_id');
+									if (!localStorage.getItem('wordpress_loggedin_admin') && !localStorage.getItem('app_user_id')) {
+										window.location.href = 'index.html';
+									} else {
+										localStorage.setItem('wordpress_loggedin_admin', '', { expires: 0, path: '/' });
+										localStorage.setItem('app_user_id', 0, { expires: 0, path: '/' });
+										window.location.href = 'index.html';
+									}
+									alert( data.msj );
+								}
+							},
+							timeout:10000,
+							error: function(){
+								loading_ajax({estado:false});
+								//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
+								//navigator.notification.beep(2);
+								//navigator.notification.vibrate(2);
+							}
+						});
+						
+						
 						window.location.href = 'groups.html';
 					} else {
 						var html = '<h2>Datos erroneos</h2><p>Ha ocurrido un problema, por favor verifica que los datos ingresados sean correctos</p>';
