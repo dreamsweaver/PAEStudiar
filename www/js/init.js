@@ -866,8 +866,15 @@ $(document).ready(function(){
 
 						  html += '<div class="text-new">'+
 						  	'<div class="separator-fields"></div>'+
-						  	'<h2 class="title-new">'+data[f].nombre+'</h2>'+
-						  	'<a class="category-link" href="#">'+data[f].dificultad+'</a><a class="category-link" href="#">'+data[f].ano+'</a><a class="category-link" href="#">Estudio</a><a class="category-link" href="#">'+data[f].materia+'</a>'+
+						  	'<h2 class="title-new">'+data[f].nombre+'</h2>';
+							if( data[f].dificultad.length > 0 ){
+								var dificultad_ = '';
+								if( data[f].dificultad == 'dificil' ){ dificultad_ = 'Difícil'; }
+								if( data[f].dificultad == 'facil' ){ dificultad_ = 'Fácil'; }
+								if( data[f].dificultad == 'medio' ){ dificultad_ = 'Medio'; }
+								html += '<a class="category-link" href="#">'+dificultad_+'</a>';
+							}
+							html += '<a class="category-link" href="#">'+data[f].ano+'</a><a class="category-link" href="#">Estudio</a><a class="category-link" href="#">'+data[f].materia+'</a>'+
 						  	'<div class="separator-fields"></div>'+
 						  	'<p class="description-new"><strong>Indicador de logro</strong>: '+data[f].indicador_de_logro+'.<br>'+
 							'<strong>Habilidad específica</strong>: '+data[f].habilidad_especifica+'.<br>'+
