@@ -1094,3 +1094,5 @@ ul.content {
 .sy-pager {display: none!important;}
 #zoommanager {background: #fff; overflow: hidden; list-style:none; padding-left: 0px;}
 #zoommanager li {float: left; width: auto; margin: 0; padding: 0; list-style:none;}
+.blink_me {animation: blinker 1s linear infinite;}
+@keyframes blinker {50% { opacity: 0; }}

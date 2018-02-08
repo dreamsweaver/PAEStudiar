@@ -1152,10 +1152,22 @@ $(document).ready(function(){
 				$('.wizard').wizard({
 					buttonLabels: {
 						next: 'Siguiente',
-						back: 'Atras',
+						back: '',
 						finish: 'Calificar'
 					},
-					 onFinish: function(){
+					onBeforeChange: function(){
+						if( $('.wizard-content .wizard-pane.active .radios-container .w-radio-input:checked').hasClass('error') ){
+							$('.wizard-steps li.current').css({
+								'background-color':'#f9cdcd'
+							});
+						}
+						if( $('.wizard-content .wizard-pane.active .radios-container .w-radio-input:checked').hasClass('done') ){
+							$('.wizard-steps li.current').css({
+								'background-color':'#e0f7c7'
+							});
+						}
+					},
+					onFinish: function(){
 						 var correctas = 0;
 						 var erroneas = 0;
 						 var materiass = materias.split('|');
@@ -1187,6 +1199,7 @@ $(document).ready(function(){
 						//return false;
 					 }
 				});
+				$(".wizard-back").hide();
 				
 				if( jQuery(".examen_slider").length ){
 					jQuery(".examen_slider").slippry({
