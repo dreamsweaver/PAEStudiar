@@ -310,6 +310,51 @@ $(document).ready(function(){
 		});
 		return false;
 	});
+
+	$('#unlock_form').submit(function(e){
+		e.preventDefault();
+		
+		var email = $('#email-field').val();
+		var code = $('#code-field').val();
+		
+		if( email.length < 5 || code.length < 3 ){
+			alert("Debes enviar un email y un código de referencia");
+			return;
+		}
+		
+		$.ajax({
+			type: "POST",
+			cache:false,
+			url: ajax_url,
+			data: {
+				email : email,
+				code : code,
+				action : "user_ublock"
+			},
+			beforeSend: function(){
+				loading_ajax();
+			},
+			success: function (data) {
+				data = $.parseJSON(data);
+				console.log(data);
+				loading_ajax({estado:false});
+				if( data.estatus == 1 ){
+					alert( data.msj );
+				} else {
+					alert( data.msj );
+				}
+			},
+			timeout:10000,
+			error: function(){
+				loading_ajax({estado:false});
+				//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
+				//navigator.notification.beep(2);
+				//navigator.notification.vibrate(2);
+			}
+		});
+		return false;
+	});
+
 	
 	$('#perfil_settings').submit(function(e){
 		e.preventDefault();
