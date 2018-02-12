@@ -50,8 +50,4 @@
     
 	<engine name="android" />
     <plugin name="cordova-plugin-whitelist" />
-	
-	<config-file platform="android" parent="/manifest" mode="merge">
-		<application android:debuggable="false"/>
-	</config-file>
 </widget>
