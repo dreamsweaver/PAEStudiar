@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8' ?>
-<widget id="org.lew.paestudiar" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="org.lew.paestudiar" version="1.0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>PAEStudiar</name>
     <description>
         Esta aplicación está destinada para que los estudiantes de bachillerato de El Salvador puedan estudiar para el exámen nacional PAES, esta app facilitará el estudio de cada alumno significativamente haciendo que el estudio sea menos aburrido y el rendimiento a la hora de evaluar sea más alto
