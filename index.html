@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Splash Screen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, user-scalable=yes">
+  <meta http-equiv="cache-control" content="max-age=0" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="pragma" content="no-cache" />
+  
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/framework.css">
+  <link rel="stylesheet" type="text/css" href="css/washington.css">
+  <script src="js/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ["Montserrat:400,700"]
+      }
+    });
+  </script>
+  <script type="text/javascript" src="js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="images/icon.ico">
+  <link rel="apple-touch-icon" href="images/icon.ico">
+
+  <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="cordova.js"></script>
+</head>
+<body class="free">
+  <section class="w-section mobile-wrapper">
+
+    <div class="page-content" id="main-stack" data-scroll="0" data-splash="2000" data-redirect="free.html">
+      <div class="w-nav navbar"></div>
+      <div class="body padding">
+        <div class="splash-logo"></div>
+        <div class="bottom-section padding text-centered">
+          <h4>Bienvenido!</h4>
+          <p class="welcome-splash-text">Comienza a prepararte
+            <br>para la PAES en minutos.</p>
+          <div class="separator-big"></div>
+          <div class="link-upper">CARGANDO...</div>
+          <div class="separator-bottom"></div>
+        </div>
+      </div>
+    </div>
+    <div class="page-content loading-mask" id="new-stack">
+      <div class="loading-icon">
+        <div class="navbar-button-icon icon ion-load-d"></div>
+      </div>
+    </div>
+  </section>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/framework.js"></script>
+  <!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->
+</body>
+</html>
