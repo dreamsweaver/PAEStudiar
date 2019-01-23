@@ -1096,3 +1096,4 @@ ul.content {
 #zoommanager li {float: left; width: auto; margin: 0; padding: 0; list-style:none;}
 .blink_me {animation: blinker 1s linear infinite;}
 @keyframes blinker {50% { opacity: 0; }}
+.navbar {position: absolute!important;}

@@ -11,6 +11,7 @@
   <link rel="stylesheet" type="text/css" href="css/normalize.css">
   <link rel="stylesheet" type="text/css" href="css/framework.css">
   <link rel="stylesheet" type="text/css" href="css/washington.css">
+  <script src="cordova.js"></script>
   <script src="js/webfont.js"></script>
   <script>
     WebFont.load({
@@ -24,15 +25,13 @@
   <link rel="apple-touch-icon" href="images/icon.ico">
 
   <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
-  <script type="text/javascript" src="cordova.js"></script>
 </head>
 <body>
+  <section class="w-section mobile-wrapper">
 	<ul id="zoommanager">
 		<li><button class="button" id="zoom-in">+ Zoom</button></li>
 		<li><button class="button" id="zoom-out">- Zoom</button></li>
 	</ul>
-  <section class="w-section mobile-wrapper">
-
     <div class="page-content" id="main-stack">
       <div class="w-nav navbar" data-collapse="all" data-animation="over-left" data-duration="400" data-contain="1" data-easing="ease-out-quint" data-no-scroll="1">
         <div class="w-container">
@@ -58,12 +57,6 @@
                 <div class="icon ion-ios-download-outline"></div>
               </div>
               <div class="nav-menu-titles">Examinarme</div>
-            </a>
-            <a class="w-clearfix w-inline-block nav-menu-link" href="settings.html" data-load="1">
-              <div class="icon-list-menu">
-                <div class="icon ion-ios-cloud-upload-outline"></div>
-              </div>
-              <div class="nav-menu-titles">Mis Datos</div>
             </a>
             <a class="w-clearfix w-inline-block nav-menu-link" href="results.html" data-load="1">
               <div class="icon-list-menu">
@@ -144,6 +137,8 @@
     </div>
   </section>
   <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/init-mobile.js"></script>
+  <script src="js/jquery.mobile-1.4.5.min.js"></script>
   <script type="text/javascript" src="js/framework.js"></script>
   <script src="assets/animatemodal/animatedModal.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>

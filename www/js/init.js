@@ -4,22 +4,9 @@
 var url_base = 'http://app.paestudiar.siesa.net/';
 var ajax_url = url_base+'wp-admin/admin-ajax.php';
 
-document.addEventListener("deviceready",onDeviceReady,false);
-function onDeviceReady(){
-	//checkConnection();
-}
-
 $(document).ready(function(){
-	//$("body").pullToRefresh();
-	//console.log(localStorage.getItem('wordpress_loggedin_admin'));
-	if( $('body').hasClass('free') === false ){
-		setTimeout(function(){
-			verify_loggedout_cookie();	
-			check_user_exist();
-		},1000);
-		
-	}
 	
+	//AL HACER CLICK EN EL BOTON DE ESTADIAR SE COMPRUEBAN LOS PARAMETROS
 	$('#estudiarbtn').click(function(){
 		var element = $(this);
 		var url = element.attr("href");
@@ -30,6 +17,7 @@ $(document).ready(function(){
 		}
 	});
 	
+	//
 	if( $('body').hasClass('seleccionexamen') ){
 		//console.log(get_URL_parameter('materias'));
 		if( get_URL_parameter('year') === undefined ){
@@ -128,302 +116,6 @@ $(document).ready(function(){
 		});
 		
 	}
-	
-	if( $('body').hasClass('login') ){
-		verify_loggedin_cookie();
-		var nonce = get_nonce();
-		
-		$('#sendLogin').submit(function(){
-			var pass = $('#password-field').val();
-			var user = $('#email-field').val();
-			$.ajax({
-				type: "POST",
-				cache:false,
-				url: url_base+'api/auth/generate_auth_cookie/',
-				data: {
-					nonce : nonce,
-					username : user,
-					password : pass,
-					insecure : "cool"
-				},
-				beforeSend: function(){
-					loading_ajax();
-				},
-				success: function (data) {
-					loading_ajax({estado:false});
-					if( data.status == "ok" ){
-						
-						localStorage.setItem('wordpress_loggedin_admin', data.cookie);
-						localStorage.setItem('app_user_id', data.user.id);
-						
-						var deviceid = localStorage.getItem('temp_deviceid');
-						var user = data.user.id
-
-						$.ajax({
-							type: "POST",
-							cache:false,
-							url: ajax_url,
-							data: {
-								mac : deviceid,
-								user_id : user,
-								action : "verificar_dispositivo"
-							},
-							beforeSend: function(){
-								loading_ajax();
-							},
-							success: function (data) {
-								data = $.parseJSON(data);
-								console.log(data);
-								loading_ajax({estado:false});
-								
-								if( data.device !== undefined && deviceid != data.device ){
-									localStorage.removeItem('temp_deviceid');
-									localStorage.setItem('temp_deviceid',data.device);
-								}
-								if( data.estatus == 0 ){
-									//navigator.notification.alert(data.msj, function(){ window.location.href = 'free.html'; }, 'Registri exitoso','Aceptar');
-									localStorage.removeItem('wordpress_loggedin_admin');
-									localStorage.removeItem('app_user_id');
-									if (!localStorage.getItem('wordpress_loggedin_admin') && !localStorage.getItem('app_user_id')) {
-										window.location.href = 'index.html';
-									} else {
-										localStorage.setItem('wordpress_loggedin_admin', '', { expires: 0, path: '/' });
-										localStorage.setItem('app_user_id', 0, { expires: 0, path: '/' });
-										window.location.href = 'index.html';
-									}
-									alert( data.msj );
-								}
-							},
-							timeout:10000,
-							error: function(){
-								loading_ajax({estado:false});
-								//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
-								//navigator.notification.beep(2);
-								//navigator.notification.vibrate(2);
-							}
-						});
-						
-						
-						window.location.href = 'groups.html';
-					} else {
-						var html = '<h2>Datos erroneos</h2><p>Ha ocurrido un problema, por favor verifica que los datos ingresados sean correctos</p>';
-						$('.ajaxcontent').html(html);
-						$("#openpopup").animatedModal();
-						$("#openpopup").trigger('click');
-					}
-				},
-				timeout:10000,
-				error: function(){
-					loading_ajax({estado:false});
-					//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
-					//navigator.notification.beep(2);
-					//navigator.notification.vibrate(2);
-				}
-			});
-			return false;
-		});
-	}
-	
-
-	$('#registrarusuario').submit(function(e){
-		e.preventDefault();
-		var nombre = $('#full-name').val();
-		var email = $('#email-field').val();
-		var pass = $('#password-field').val();
-		var telefono = $('#phone-field').val();
-		var codigo = $('#refer-field').val();
-
-		$.ajax({
-			type: "POST",
-			cache:false,
-			url: ajax_url,
-			data: {
-				nombre : nombre,
-				email : email,
-				contrasena : pass,
-				telefono : telefono,
-				codigo : codigo,
-				action : "preregister_user_ajax"
-			},
-			beforeSend: function(){
-				loading_ajax();
-			},
-			success: function (data) {
-				data = $.parseJSON(data);
-				console.log(data);
-				loading_ajax({estado:false});
-				if( data.estatus == 1 ){
-					//navigator.notification.alert(data.msj, function(){ window.location.href = 'free.html'; }, 'Registri exitoso','Aceptar');
-					alert( data.msj );
-					window.location.href = 'free.html';
-				} else {
-					//navigator.notification.alert(data.msj, function(){}, 'Error en Registri','Aceptar');
-					alert( data.msj );
-				}
-			},
-			timeout:10000,
-			error: function(){
-				loading_ajax({estado:false});
-				//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
-				//navigator.notification.beep(2);
-				//navigator.notification.vibrate(2);
-			}
-		});
-		return false;
-	});
-	
-	$('#recovery_form').submit(function(e){
-		e.preventDefault();
-		
-		var email = $('#email-field').val();
-		
-		$.ajax({
-			type: "POST",
-			cache:false,
-			url: ajax_url,
-			data: {
-				email : email,
-				action : "password_recovery_ajax"
-			},
-			beforeSend: function(){
-				loading_ajax();
-			},
-			success: function (data) {
-				data = $.parseJSON(data);
-				console.log(data);
-				loading_ajax({estado:false});
-				if( data.estatus == 1 ){
-					//navigator.notification.alert(data.msj, function(){ window.location.href = 'free.html'; }, 'Registri exitoso','Aceptar');
-					alert( data.msj );
-				} else {
-					//navigator.notification.alert(data.msj, function(){}, 'Error en Registri','Aceptar');
-					alert( data.msj );
-				}
-			},
-			timeout:10000,
-			error: function(){
-				loading_ajax({estado:false});
-				//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
-				//navigator.notification.beep(2);
-				//navigator.notification.vibrate(2);
-			}
-		});
-		return false;
-	});
-
-	$('#unlock_form').submit(function(e){
-		e.preventDefault();
-		
-		var email = $('#email-field').val();
-		var code = $('#code-field').val();
-		
-		if( email.length < 5 || code.length < 3 ){
-			alert("Debes enviar un email y un código de referencia");
-			return;
-		}
-		
-		$.ajax({
-			type: "POST",
-			cache:false,
-			url: ajax_url,
-			data: {
-				email : email,
-				code : code,
-				action : "user_ublock"
-			},
-			beforeSend: function(){
-				loading_ajax();
-			},
-			success: function (data) {
-				data = $.parseJSON(data);
-				console.log(data);
-				loading_ajax({estado:false});
-				if( data.estatus == 1 ){
-					alert( data.msj );
-				} else {
-					alert( data.msj );
-				}
-			},
-			timeout:10000,
-			error: function(){
-				loading_ajax({estado:false});
-				//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
-				//navigator.notification.beep(2);
-				//navigator.notification.vibrate(2);
-			}
-		});
-		return false;
-	});
-
-	
-	$('#perfil_settings').submit(function(e){
-		e.preventDefault();
-		
-		var nombre = $('#full-name-field').val();
-		var email = $('#email-field').val();
-		var birth = $('#birthday-field').val();
-		var telefono = $('#phone-field').val();
-		var centro = $('#escuela-field').val();
-		var genero = '';
-		var user_id = localStorage.getItem('app_user_id');
-		
-		if( $('#generof').is(':checked') ){ genero = 'femenino'; }
-		if( $('#generom').is(':checked') ){ genero = 'masculino'; }
-		
-		$.ajax({
-			type: "POST",
-			cache:false,
-			url: ajax_url,
-			data: {
-				nombre : nombre,
-				email : email,
-				birth : birth,
-				telefono : telefono,
-				centro : centro,
-				genero : genero,
-				user_id : user_id,
-				action : "guardar_perfil_ajax"
-			},
-			beforeSend: function(){
-				loading_ajax();
-			},
-			success: function (data) {
-				data = $.parseJSON(data);
-				console.log(data);
-				loading_ajax({estado:false});
-				if( data.estatus == 1 ){
-					//navigator.notification.alert(data.msj, function(){ window.location.href = 'free.html'; }, 'Registri exitoso','Aceptar');
-					alert( data.msj );
-				} else {
-					//navigator.notification.alert(data.msj, function(){}, 'Error en Registri','Aceptar');
-					alert( data.msj );
-				}
-			},
-			timeout:10000,
-			error: function(){
-				loading_ajax({estado:false});
-				//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
-				//navigator.notification.beep(2);
-				//navigator.notification.vibrate(2);
-			}
-		});
-		return false;
-	});
-	
-	jQuery('body').delegate('.logout','clic tap',function(){
-		loading_ajax();
-		localStorage.removeItem('wordpress_loggedin_admin');
-		localStorage.removeItem('app_user_id');
-		if (!localStorage.getItem('wordpress_loggedin_admin') && !localStorage.getItem('app_user_id')) {
-			window.location.href = 'index.html';
-			localStorage.removeItem('temp_deviceid');
-		} else {
-			localStorage.setItem('wordpress_loggedin_admin', '', { expires: 0, path: '/' });
-			localStorage.setItem('app_user_id', 0, { expires: 0, path: '/' });
-			window.location.href = 'index.html';
-			localStorage.removeItem('temp_deviceid');
-		}
-	});
 	
 	$("#animatedModal").click(function(){
 		$(".close-animatedModal").trigger('click');
@@ -846,6 +538,14 @@ $(document).ready(function(){
 				$('#freepaes').html(html);
 
 				loading_ajax({estado:false});
+			},
+			timeout:30000,
+			error: function(){
+				loading_ajax({estado:false});
+				alert('No hay respuesta del servidor, verifica la conexion a internet y si el problema persiste notifica a PAEStudiar');
+				//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
+				//navigator.notification.beep(2);
+				//navigator.notification.vibrate(2);
 			}
 		});
 	}
@@ -979,9 +679,10 @@ $(document).ready(function(){
 				}
 				loading_ajax({estado:false});
 			},
-			timeout:10000,
+			timeout:30000,
 			error: function(){
 				loading_ajax({estado:false});
+				alert('No hay respuesta del servidor, verifica la conexion a internet y si el problema persiste notifica a PAEStudiar');
 				//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
 				//navigator.notification.beep(2);
 				//navigator.notification.vibrate(2);
@@ -989,50 +690,6 @@ $(document).ready(function(){
 		});	
 	}
 	
-	/*
-	* Obtener datos de usuario
-	*/
-	if( $('body').hasClass('settings') ){
-		var userid = localStorage.getItem('app_user_id'); 
-		
-		$.ajax({
-			type: "POST",
-			cache:false,
-			url: ajax_url,
-			data: {
-				user : userid,
-				action : "get_user"
-			},
-			beforeSend: function(){
-				loading_ajax();
-			},
-			success: function (data) {
-				data = jQuery.parseJSON(data);
-				
-				$('#full-name-field').val(data.nombre);
-				$('#email-field').val(data.email);
-				$('#birthday-field').val(data.birth);
-				$('#phone-field').val(data.telefono);
-				$('#escuela-field').val(data.centro_escolar);
-				
-				if( data.genero == 'masculino' ){
-					$('#generom').attr('checked','checked');
-					$('#generom').prev().addClass('checked');
-				}
-				if( data.genero == 'femenino' ){
-					$('#generof').attr('checked','checked');
-					$('#generof').prev().addClass('checked');
-				}
-			},
-			timeout:10000,
-			error: function(){
-				loading_ajax({estado:false});
-				//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
-				//navigator.notification.beep(2);
-				//navigator.notification.vibrate(2);
-			}
-		});	
-	}
 	
 	$('body.practicar .estudio').each(function(){
 		var element = $(this);
@@ -1259,10 +916,10 @@ $(document).ready(function(){
 					});
 				}
 			},
-			timeout:10000,
+			timeout:30000,
 			error: function(){
 				loading_ajax({estado:false});
-				//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
+				alert('No hay respuesta del servidor, comprueba la conexión a internet, si el problema persiste contacta con PAEStudiar');
 				//navigator.notification.beep(2);
 				//navigator.notification.vibrate(2);
 			}
@@ -1290,17 +947,17 @@ $(document).ready(function(){
 				
 				data.anios = data.anios.sort();
 				
-				for( var i = data.anios.length-1; i >= 0; i-- ){
+				//for( var i = data.anios.length-1; i >= 0; i-- ){
 					anios += '<li class="list-item" data-ix="list-item" style="opacity: 1; transform: translateX(0px) translateY(0px); transition: opacity 500ms cubic-bezier(0.23, 1, 0.32, 1), transform 500ms cubic-bezier(0.23, 1, 0.32, 1);">'+
 						'<a class="w-clearfix w-inline-block" href="#">'+
 						  '<div class="icon-list">'+
 							'<div class="icon ion-ios-checkmark-empty"></div>'+
 						  '</div>'+
-						  '<div class="title-list">'+data.anios[i]+'</div>'+
+						  '<div class="title-list">'+data.anios[0]+'</div>'+
 						'</a>'+
 					  '</li>';
 					$('#examinaranios').html(anios);
-				}
+				//}
 				
 				for( var f = 0; f < data.materias.length; f++ ){
 					materias += '<li class="list-item" data-ix="list-item" style="opacity: 1; transform: translateX(0px) translateY(0px); transition: opacity 500ms cubic-bezier(0.23, 1, 0.32, 1), transform 500ms cubic-bezier(0.23, 1, 0.32, 1);">'+
@@ -1316,10 +973,10 @@ $(document).ready(function(){
 				
 				loading_ajax({estado:false});
 			},
-			timeout:10000,
+			timeout:30000,
 			error: function(){
 				loading_ajax({estado:false});
-				//navigator.notification.alert('No hay respuesta del servidor, si haces click en aceptar se volverá a intentar cargar los datos', function(){ window.location.reload() }, 'Servidor no responde','Aceptar');
+				alert('No hay respuesta del servidor, verifica la conexion a internet y si el problema persiste notifica a PAEStudiar');
 				//navigator.notification.beep(2);
 				//navigator.notification.vibrate(2);
 			}
@@ -1493,3 +1150,16 @@ Array.prototype.unique = function(a){
 String.prototype.ucfirst = function(){
     return this.charAt(0).toUpperCase() + this.substr(1);
 }
+
+
+var connectionStatus = false;
+
+$(document).on('pagebeforeshow', 'body', function () {
+    setInterval(function () {
+        connectionStatus = navigator.onLine ? 'online' : 'offline';
+		
+		if( connectionStatus == 'offline' ){
+			window.location.href = 'offline.html'
+		}
+    }, 1000);
+});
